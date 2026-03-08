@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JIM🔥FTP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Hind Siliguri', sans-serif; }</style>
+</head>
+<body class="bg-slate-900 text-white min-h-screen antialiased">
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-cyan-400 mb-2">JIM🔥FTP</h1>
+            <p class="text-slate-400">আপনার সব FTP সার্ভার, এক ক্লিকেই হাতের মুঠোয়!</p>
+        </header>
+
+        <!-- Site List -->
+        <div>
+            <h2 class="text-3xl font-bold text-center mb-6 text-slate-300">FTP SITES</h2>
+            <div id="site-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- FTP sites will be dynamically added here -->
+            </div>
+             <div id="empty-message" class="text-center text-slate-500 mt-10 hidden">
+                <p>এখনও কোনো FTP সাইট যোগ করা হয়নি।</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==============================================================================
+        // গুরুত্বপূর্ণ: নিচের লাইনের কোডটি আপনার admin.html থেকে জেনারেট করে এখানে পেস্ট করুন
+        // ==============================================================================
+        const sites = [
+   {
+        "name": "NEW CIRCLE",
+        "url": "http://new.circleftp.net/"
+    },
+
+    {
+        "name": "FTP BD",
+        "url": "https://server4.ftpbd.net/"
+    },
+    {
+        "name": "DHAKA FLIX",
+        "url": "http://172.16.50.4/"
+    },
+    {
+        "name": "BD LAN",
+        "url": "https://bdlan.net/"
+    },
+    {
+        "name": "ICC FTP",
+        "url": "http://10.16.100.244/"
+    },
+    {
+        "name": "CTG HALL",
+        "url": "http://www.ctghall.com/"
+    },
+    {
+        "name": "AMBER IT",
+        "url": "http://binodonmela.net/"
+    },
+    {
+        "name": "NATURAL",
+        "url": "http://www.naturalbd.com/"
+    },
+    {
+        "name": "LINK 3",
+        "url": "http://www.cinehub24.com/"
+    },
+    {
+        "name": "CTG MOVIES",
+        "url": "http://ctgmovies.com/"
+    },
+    {
+        "name": "CRAZY CTG",
+        "url": "https://crazyctg.com/"
+    },
+    {
+        "name": "NAGORDOLA",
+        "url": "http://nagordola.com.bd"
+    },
+    {
+        "name": "BUS FTP",
+        "url": "http://103.87.212.46/"
+    },
+    {
+        "name": "FTP BD EMBY",
+        "url": "http://media.ftpbd.net:8096/web/index.html#!/home"
+    },
+    {
+        "name": "ROARZONE EMBY",
+        "url": "https://play.roarzone.info/web/index.html"
+    },
+    {
+        "name": "CIRCLE",
+        "url": "https://circleftp.net/"
+    },
+    {
+        "name": "TIMEPASS",
+        "url": "https://timepassbd.live/"
+    },
+    {
+        "name": "DFLIX",
+        "url": "https://movies.discoveryftp.net/"
+    },
+    {
+        "name": "Subsource",
+        "url": "https://subsource.net"
+    },
+    {
+        "name": "EBOX",
+        "url": "http://fs.ebox.live"
+    },
+    {
+        "name": "EBOX 2",
+        "url": "http://play.ebox.live"
+    },
+    {
+        "name": "CLOUD TV",
+        "url": "http://172.19.178.180"
+    },
+    {
+        "name": "STARBD FLIX",
+        "url": "http://172.27.27.3/"
+    },
+    {
+        "name": "CIRCLE TV",
+        "url": "http://iptvidn.com"
+    },
+    {
+        "name": "FTPBD TV",
+        "url": "https://otv.ftpbd.net"
+    },
+    {
+        "name": "CLUBBD TV",
+        "url": "http://clubbd.com"
+    },
+    {
+        "name": "EBOX TV",
+        "url": "http://tv2.ebox.live"
+    },
+    {
+        "name": "SMART BOX TV",
+        "url": "http://smartbox.digital"
+    },
+    {
+        "name": "SHOWTIME",
+        "url": "http://showtimebd.com"
+    },
+];
+        // ==============================================================================
+        
+        const siteList = document.getElementById('site-list');
+        const emptyMessage = document.getElementById('empty-message');
+
+        function renderSites() {
+            siteList.innerHTML = '';
+            if (sites.length === 0) {
+                emptyMessage.classList.remove('hidden');
+            } else {
+                emptyMessage.classList.add('hidden');
+                sites.forEach(site => {
+                    const siteCard = document.createElement('div');
+                    siteCard.className = 'bg-slate-800 rounded-lg shadow-md p-5 flex flex-col justify-between transition transform hover:-translate-y-1 hover:shadow-cyan-500/20';
+                    siteCard.innerHTML = `
+                        <div>
+                            <h3 class="text-xl font-bold text-cyan-400 truncate">${site.name}</h3>
+                            <p class="text-slate-400 text-sm break-words mb-4">${site.url}</p>
+                        </div>
+                        <a href="${site.url}" target="_blank" class="w-full text-center bg-slate-700 hover:bg-cyan-500 hover:text-slate-900 text-cyan-300 font-semibold py-2 px-4 rounded-md transition duration-300">Open ▶️</a>
+                    `;
+                    siteList.appendChild(siteCard);
+                });
+            }
+        }
+        renderSites();
+    </script>
+</body>
+</html>
